@@ -8,7 +8,7 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 ses = boto3.client('ses')
-email_address = 'mkukreja1@gmail.com'
+email_address = 'YOUR_EMAIL'
 
 def lambda_handler(event, context):
     subject = 'New File Uploaded to S3'
