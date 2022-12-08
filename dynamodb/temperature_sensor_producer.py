@@ -31,7 +31,7 @@ while True:
     temp = random.uniform(20, 35)
     sensor_timestamp = calendar.timegm(datetime.utcnow().timetuple())
 
-    room = ['ROOM1','ROOM2', 'ROOM3']
+    room = ['WAREHOUSE1','WAREHOUSE2', 'WAREHOUSE3', 'WAREHOUSE4', 'WAREHOUSE5']
     sensor_id = random.choice(room)
 
     put_to_table(sensor_id, str(round(temp,2)), sensor_timestamp)
