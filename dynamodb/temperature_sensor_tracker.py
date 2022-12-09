@@ -10,7 +10,7 @@ logger.setLevel(logging.INFO)
 ses = boto3.client('ses')
 email_address = 'YOUR_EMAIL'
 
-
+def lambda_handler(event, context):
     response=json.dumps(event)
     
     for record in event['Records']:
@@ -20,7 +20,7 @@ email_address = 'YOUR_EMAIL'
                         + '\nThere could be a danger of fire in the warehouse.'
             
             print(body_text)
-    ses.send_email(Source=email_address,
+            ses.send_email(Source=email_address,
                    Destination={'ToAddresses': [email_address]},
                    Message={'Subject': {'Data': subject}, 'Body': {'Text': {'Data': body_text}}})
         
