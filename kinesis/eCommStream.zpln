@@ -1,0 +1,409 @@
+﻿{
+  "paragraphs": [
+    {
+      "user": "anonymous",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1671224034505_6860375",
+      "id": "paragraph_1671224034505_6860375",
+      "dateCreated": "2022-12-16T20:53:54+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:202",
+      "text": "%flink.ssql\nCREATE TABLE `eCommStream` (\n   `id` STRING,\n\t`eventType` STRING,\n\t`subject` STRING,\n\t`eventTime` STRING,\n\t`data` ROW(customer_name STRING, address STRING, city STRING, postalcode STRING, country STRING, phone STRING, email STRING, product_name STRING, order_date STRING, currency STRING, order_mode STRING, sale_price FLOAT, order_number STRING),\n    `dataVersion` STRING\n )\n WITH (\n   'connector' = 'kinesis',\n   'stream' = 'eCommStream',\n   'aws.region' = 'us-east-1',\n   'scan.stream.initpos' = 'TRIM_HORIZON',\n   'format' = 'json'\n );\n",
+      "dateUpdated": "2022-12-16T21:00:50+0000",
+      "dateFinished": "2022-12-16T21:00:51+0000",
+      "dateStarted": "2022-12-16T21:00:50+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Table has been created.\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%flink.ssql(type=update)\nSELECT * FROM `eCommStream`;",
+      "user": "anonymous",
+      "dateUpdated": "2022-12-16T21:04:31+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "FLINK JOB",
+          "tooltip": "View in Flink web UI",
+          "group": "flink",
+          "values": [
+            {
+              "jobUrl": "/flinkdashboard/#/job/6cc867569e165504d5436db08aa85e69",
+              "$$hashKey": "object:2380"
+            }
+          ],
+          "interpreterSettingId": "flink"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1671224166070_1279326341",
+      "id": "paragraph_1671224166070_1279326341",
+      "dateCreated": "2022-12-16T20:56:06+0000",
+      "status": "RUNNING",
+      "focus": true,
+      "$$hashKey": "object:360",
+      "dateFinished": "2022-12-16T21:02:34+0000",
+      "dateStarted": "2022-12-16T21:04:31+0000",
+      "results": {
+        "msg": [
+          {
+            "data": "id\teventType\tsubject\teventTime\tdata\tdataVersion\n3001\trecordInserted\tecomm/customers\t2021-01-01\t+I[Julie Rich, Ap #255-3031 Dui Avenue, Billings, 80834, USA, 1-528-884-4331, Donec.felis@nequesedsem.ca, microwave, 18/05/2021, EUR, NEW, 32.34, 385]\t1.0\n3002\trecordInserted\tecomm/customers\t2021-01-01\t+I[Ratnali Kumar, Ap #476-7527 Aenean Road, Bhilwara, 827484, India, +91 0952796185, Donec.feugiat@felisadipiscing.co.uk, microwave, 18/05/2021, USD, NEW, 44.45, 386]\t1.0\n3003\trecordInserted\tecomm/customers\t2021-01-01\t+I[Eden Byrd, 3840 Sed St., Milton Keynes, C4T 5H5, UK, 00505 931979, lorem@idmagnaet.org, microwave, 18/05/2021, USD, NEW, 64.68, 387]\t1.0\n3004\trecordInserted\tecomm/customers\t2021-01-01\t+I[Cara Swanson, P.O. Box 998, 2884 Pharetra. Road, Harrisburg, 65895, USA, 1-375-910-8385, velit.justo@lacus.com, microwave, 18/05/2021, INR, NEW, 74.65, 388]\t1.0\n3005\trecordInserted\tecomm/customers\t2021-01-01\t+I[Chaney Figueroa, 546-5675 Pellentesque St., Newport News, 23276, USA, 1-853-137-7417, hymenaeos@Suspendissealiquet.com, microwave, 18/05/2021, EUR, NEW, 85.48, 389]\t1.0\n3006\trecordInserted\tecomm/customers\t2021-01-01\t+I[Naval Ismail, 3687 Magnis Rd., Itanagar, 747675, India, +91 6997655593, fringilla.est.Mauris@nonsollicitudina.ca, microwave, 18/05/2021, EUR, NEW, 16.77, 390]\t1.0\n3007\trecordInserted\tecomm/customers\t2021-01-01\t+I[Calista French, P.O. Box 462, 5596 Morbi St., Flin Flon, H5X 5P1, Canada, 1 (879) 192-881, Etiam.vestibulum@nonlaciniaat.ca, microwave, 18/05/2021, USD, NEW, 17.98, 391]\t1.0\n3008\trecordInserted\tecomm/customers\t2021-01-01\t+I[Magee Cash, P.O. Box 728, 3231 Vel Street, Chesapeake, 46087, USA, 1-488-816-9178, ultrices.Vivamus@acarcu.co.uk, microwave, 18/05/2021, CAD, NEW, 94.88, 392]\t1.0\n3009\trecordInserted\tecomm/customers\t2021-01-01\t+I[Alvin Russell, P.O. Box 333, 5820 Vel Avenue, New Haven, 14867, USA, 1-117-280-4751, egestas@leoMorbi.com, microwave, 18/05/2021, INR, NEW, 24.98, 393]\t1.0\n3010\trecordInserted\tecomm/customers\t2021-01-01\t+I[Chadwick Hebert, Ap #556-497 In Ave, Hamilton, K3W 8V9, Canada, 1 (365) 681-6481, elit@cursus.org, microwave, 18/05/2021, CAD, NEW, 17.7, 394]\t1.0\n3011\trecordInserted\tecomm/customers\t2021-01-01\t+I[Kenyon Daugherty, 1339 Elit. Ave, Birmingham, 14456, USA, 1-236-491-4683, lacus.Mauris@nonummyultricies.ca, microwave, 19/05/2021, EUR, NEW, 17.7, 397]\t1.0\n3012\trecordInserted\tecomm/customers\t2021-01-01\t+I[Vera Russell, Ap #934-9975 Iaculis St., Bognor Regis, RF1 3IR, UK, 01717 566325, sociosqu@dui.org, microwave, 19/05/2021, EUR, NEW, 45.33, 398]\t1.0\n3013\trecordInserted\tecomm/customers\t2021-01-01\t+I[Linda Pugh, Ap #598-6303 Cum Avenue, Gloucester, P1P 6B5, Canada, 1 (450) 461-4621, tincidunt@tempuseu.net, microwave, 19/05/2021, CAD, NEW, 65.32, 399]\t1.0\n3014\trecordInserted\tecomm/customers\t2021-01-01\t+I[Brynn Nelson, 7635 Dictum Rd., Boston, 75124, USA, 1-769-479-6047, nonummy.ultricies.ornare@Nunc.com, microwave, 19/05/2021, USD, NEW, 105.44, 400]\t1.0\n3015\trecordInserted\tecomm/customers\t2021-01-01\t+I[Nelle Moore, 5495 Magna. Ave, McCallum, H3K 0A4, Canada, 1 (416) 966-3866, ultrices.a@leo.co.uk, microwave, 19/05/2021, CAD, NEW, 54.33, 401]\t1.0\n3016\trecordInserted\tecomm/customers\t2021-01-01\t+I[Ignacia Price, 6009 Ipsum Av., Lerwick, J0 3WK, UK, 06818 437518, non@facilisisvitae.ca, microwave, 19/05/2021, EUR, NEW, 55.33, 402]\t1.0\n3017\trecordInserted\tecomm/customers\t2021-01-01\t+I[Ciara Salinas, 758-7308 Mauris. Rd., Burlington, 95877, USA, 1-276-382-6027, ullamcorper.velit.in@iaculisaliquet.net, microwave, 19/05/2021, USD, NEW, 76.29, 403]\t1.0\n3018\trecordInserted\tecomm/customers\t2021-01-01\t+I[Beatrice Tucker, 649-7099 Nulla St., Oakham, QE23 6GA, UK, 04484 843599, ullamcorper.Duis@est.net, microwave, 19/05/2021, EUR, NEW, 98.11, 404]\t1.0\n3019\trecordInserted\tecomm/customers\t2021-01-01\t+I[Brenna Robles, 246-3360 Venenatis Street, Stratford, N4R 2M9, Canada, 1 (403) 201-6443, dui@ligula.edu, microwave, 19/05/2021, CAD, NEW, 90.56, 405]\t1.0\n3020\trecordInserted\tecomm/customers\t2021-01-01\t+I[Beverly Tillman, 501-9350 Mauris Street, Jedburgh, PO3C 0VI, UK, 07464 422658, tempor.bibendum.Donec@Vivamus.net, microwave, 19/05/2021, EUR, NEW, 17.7, 406]\t1.0\n",
+            "type": "TABLE"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%flink.ssql(type=update)\nSELECT data.customer_name, data.address, data.city, data.postalcode, data.country, data.phone, data.email, data.product_name, data.order_date, data.currency, data.order_mode, data.sale_price, data.order_number FROM `eCommStream`;",
+      "user": "anonymous",
+      "dateUpdated": "2022-12-16T21:09:38+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "FLINK JOB",
+          "tooltip": "View in Flink web UI",
+          "group": "flink",
+          "values": [
+            {
+              "jobUrl": "/flinkdashboard/#/job/13cebd4eac8f4c9d02577c9c5fd8b019",
+              "$$hashKey": "object:54943"
+            }
+          ],
+          "interpreterSettingId": "flink"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1671224481903_1689838032",
+      "id": "paragraph_1671224481903_1689838032",
+      "dateCreated": "2022-12-16T21:01:21+0000",
+      "status": "ERROR",
+      "focus": true,
+      "$$hashKey": "object:562",
+      "dateFinished": "2022-12-16T21:17:50+0000",
+      "dateStarted": "2022-12-16T21:09:38+0000",
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "customer_name\taddress\tcity\tpostalcode\tcountry\tphone\temail\tproduct_name\torder_date\tcurrency\torder_mode\tsale_price\torder_number\nAlvin Russell\tP.O. Box 333, 5820 Vel Avenue\tNew Haven\t14867\tUSA\t1-117-280-4751\tegestas@leoMorbi.com\tmicrowave\t18/05/2021\tINR\tNEW\t24.98\t393\nBeatrice Tucker\t649-7099 Nulla St.\tOakham\tQE23 6GA\tUK\t04484 843599\tullamcorper.Duis@est.net\tmicrowave\t19/05/2021\tEUR\tNEW\t98.11\t404\nBeverly Tillman\t501-9350 Mauris Street\tJedburgh\tPO3C 0VI\tUK\t07464 422658\ttempor.bibendum.Donec@Vivamus.net\tmicrowave\t19/05/2021\tEUR\tNEW\t17.7\t406\nBrenna Robles\t246-3360 Venenatis Street\tStratford\tN4R 2M9\tCanada\t1 (403) 201-6443\tdui@ligula.edu\tmicrowave\t19/05/2021\tCAD\tNEW\t90.56\t405\nBrynn Nelson\t7635 Dictum Rd.\tBoston\t75124\tUSA\t1-769-479-6047\tnonummy.ultricies.ornare@Nunc.com\tmicrowave\t19/05/2021\tUSD\tNEW\t105.44\t400\nCalista French\tP.O. Box 462, 5596 Morbi St.\tFlin Flon\tH5X 5P1\tCanada\t1 (879) 192-881\tEtiam.vestibulum@nonlaciniaat.ca\tmicrowave\t18/05/2021\tUSD\tNEW\t17.98\t391\nCara Swanson\tP.O. Box 998, 2884 Pharetra. Road\tHarrisburg\t65895\tUSA\t1-375-910-8385\tvelit.justo@lacus.com\tmicrowave\t18/05/2021\tINR\tNEW\t74.65\t388\nChadwick Hebert\tAp #556-497 In Ave\tHamilton\tK3W 8V9\tCanada\t1 (365) 681-6481\telit@cursus.org\tmicrowave\t18/05/2021\tCAD\tNEW\t17.7\t394\nChaney Figueroa\t546-5675 Pellentesque St.\tNewport News\t23276\tUSA\t1-853-137-7417\thymenaeos@Suspendissealiquet.com\tmicrowave\t18/05/2021\tEUR\tNEW\t85.48\t389\nCiara Salinas\t758-7308 Mauris. Rd.\tBurlington\t95877\tUSA\t1-276-382-6027\tullamcorper.velit.in@iaculisaliquet.net\tmicrowave\t19/05/2021\tUSD\tNEW\t76.29\t403\nEden Byrd\t3840 Sed St.\tMilton Keynes\tC4T 5H5\tUK\t00505 931979\tlorem@idmagnaet.org\tmicrowave\t18/05/2021\tUSD\tNEW\t64.68\t387\nIgnacia Price\t6009 Ipsum Av.\tLerwick\tJ0 3WK\tUK\t06818 437518\tnon@facilisisvitae.ca\tmicrowave\t19/05/2021\tEUR\tNEW\t55.33\t402\nJulie Rich\tAp #255-3031 Dui Avenue\tBillings\t80834\tUSA\t1-528-884-4331\tDonec.felis@nequesedsem.ca\tmicrowave\t18/05/2021\tEUR\tNEW\t32.34\t385\nKenyon Daugherty\t1339 Elit. Ave\tBirmingham\t14456\tUSA\t1-236-491-4683\tlacus.Mauris@nonummyultricies.ca\tmicrowave\t19/05/2021\tEUR\tNEW\t17.7\t397\nLinda Pugh\tAp #598-6303 Cum Avenue\tGloucester\tP1P 6B5\tCanada\t1 (450) 461-4621\ttincidunt@tempuseu.net\tmicrowave\t19/05/2021\tCAD\tNEW\t65.32\t399\nMagee Cash\tP.O. Box 728, 3231 Vel Street\tChesapeake\t46087\tUSA\t1-488-816-9178\tultrices.Vivamus@acarcu.co.uk\tmicrowave\t18/05/2021\tCAD\tNEW\t94.88\t392\nNaval Ismail\t3687 Magnis Rd.\tItanagar\t747675\tIndia\t+91 6997655593\tfringilla.est.Mauris@nonsollicitudina.ca\tmicrowave\t18/05/2021\tEUR\tNEW\t16.77\t390\nNelle Moore\t5495 Magna. Ave\tMcCallum\tH3K 0A4\tCanada\t1 (416) 966-3866\tultrices.a@leo.co.uk\tmicrowave\t19/05/2021\tCAD\tNEW\t54.33\t401\nRatnali Kumar\tAp #476-7527 Aenean Road\tBhilwara\t827484\tIndia\t+91 0952796185\tDonec.feugiat@felisadipiscing.co.uk\tmicrowave\t18/05/2021\tUSD\tNEW\t44.45\t386\nVera Russell\tAp #934-9975 Iaculis St.\tBognor Regis\tRF1 3IR\tUK\t01717 566325\tsociosqu@dui.org\tmicrowave\t19/05/2021\tEUR\tNEW\t45.33\t398\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Fail to run sql command: SELECT data.customer_name, data.address, data.city, data.postalcode, data.country, data.phone, data.email, data.product_name, data.order_date, data.currency, data.order_mode, data.sale_price, data.order_number FROM `eCommStream`\n"
+          },
+          {
+            "type": "ANGULAR",
+            "data": "<div class='container ng-scope' style='padding-left:0px;padding-right:0px;'>\n    <div class='panel panel-danger'>\n        <div class='panel-heading' ng-click='isOpen=!isOpen' ng-init='isOpen=false' style=\"cursor:pointer\">\n            <div class='plainTextContainer' style='font-weight:bolder'><i class=\"fa fa-caret-right fa-fw\" style=\"padding-right:7px;transition:all 0.3s;{{isOpen?'transform:rotate(90deg);transform-origin:25% 45%':''}}\"></i>RuntimeException: Retries exceeded for getRecords operation - all 3 retry attempts failed.</div>\n        </div>\n        <div class='panel-collapse' uib-collapse='!isOpen'>\n            <div class='text' style='max-height:300px;overflow:auto;padding:10px'>java.io.IOException: Fail to run stream sql job\n\tat org.apache.zeppelin.flink.sql.AbstractStreamSqlJob.run(AbstractStreamSqlJob.java:172)\n\tat org.apache.zeppelin.flink.sql.AbstractStreamSqlJob.run(AbstractStreamSqlJob.java:105)\n\tat org.apache.zeppelin.flink.FlinkStreamSqlInterpreter.callInnerSelect(FlinkStreamSqlInterpreter.java:89)\n\tat org.apache.zeppelin.flink.FlinkSqlInterrpeter.callSelect(FlinkSqlInterrpeter.java:503)\n\tat org.apache.zeppelin.flink.FlinkSqlInterrpeter.callCommand(FlinkSqlInterrpeter.java:266)\n\tat org.apache.zeppelin.flink.FlinkSqlInterrpeter.runSqlList(FlinkSqlInterrpeter.java:160)\n\tat org.apache.zeppelin.flink.FlinkSqlInterrpeter.internalInterpret(FlinkSqlInterrpeter.java:112)\n\tat org.apache.zeppelin.interpreter.AbstractInterpreter.interpret(AbstractInterpreter.java:47)\n\tat org.apache.zeppelin.interpreter.LazyOpenInterpreter.interpret(LazyOpenInterpreter.java:110)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer$InterpretJob.jobRun(RemoteInterpreterServer.java:852)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer$InterpretJob.jobRun(RemoteInterpreterServer.java:744)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:172)\n\tat org.apache.zeppelin.scheduler.AbstractScheduler.runJob(AbstractScheduler.java:132)\n\tat org.apache.zeppelin.scheduler.ParallelScheduler.lambda$runJobInScheduler$0(ParallelScheduler.java:46)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)\n\tat java.base/java.lang.Thread.run(Thread.java:829)\nCaused by: org.apache.flink.client.program.ProgramInvocationException: Job failed (JobID: 13cebd4eac8f4c9d02577c9c5fd8b019)\n\tat org.apache.flink.client.deployment.ClusterClientJobClientAdapter.lambda$getJobExecutionResult$6(ClusterClientJobClientAdapter.java:125)\n\tat java.base/java.util.concurrent.CompletableFuture$UniApply.tryFire(CompletableFuture.java:642)\n\tat java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:506)\n\tat java.base/java.util.concurrent.CompletableFuture.complete(CompletableFuture.java:2073)\n\tat org.apache.flink.runtime.concurrent.FutureUtils.lambda$retryOperationWithDelay$9(FutureUtils.java:394)\n\tat java.base/java.util.concurrent.CompletableFuture.uniWhenComplete(CompletableFuture.java:859)\n\tat java.base/java.util.concurrent.CompletableFuture$UniWhenComplete.tryFire(CompletableFuture.java:837)\n\tat java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:506)\n\tat java.base/java.util.concurrent.CompletableFuture.complete(CompletableFuture.java:2073)\n\tat org.apache.flink.client.program.rest.RestClusterClient.lambda$pollResourceAsync$24(RestClusterClient.java:670)\n\tat java.base/java.util.concurrent.CompletableFuture.uniWhenComplete(CompletableFuture.java:859)\n\tat java.base/java.util.concurrent.CompletableFuture$UniWhenComplete.tryFire(CompletableFuture.java:837)\n\tat java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:506)\n\tat java.base/java.util.concurrent.CompletableFuture.complete(CompletableFuture.java:2073)\n\tat org.apache.flink.runtime.concurrent.FutureUtils.lambda$retryOperationWithDelay$9(FutureUtils.java:394)\n\tat java.base/java.util.concurrent.CompletableFuture.uniWhenComplete(CompletableFuture.java:859)\n\tat java.base/java.util.concurrent.CompletableFuture$UniWhenComplete.tryFire(CompletableFuture.java:837)\n\tat java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:506)\n\tat java.base/java.util.concurrent.CompletableFuture.postFire(CompletableFuture.java:610)\n\tat java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1085)\n\tat java.base/java.util.concurrent.CompletableFuture$Completion.run(CompletableFuture.java:478)\n\t... 3 more\nCaused by: org.apache.flink.runtime.client.JobExecutionException: Job execution failed.\n\tat org.apache.flink.runtime.jobmaster.JobResult.toJobExecutionResult(JobResult.java:144)\n\tat org.apache.flink.client.deployment.ClusterClientJobClientAdapter.lambda$getJobExecutionResult$6(ClusterClientJobClientAdapter.java:123)\n\t... 23 more\nCaused by: org.apache.flink.runtime.JobException: Recovery is suppressed by NoRestartBackoffTimeStrategy\n\tat org.apache.flink.runtime.executiongraph.failover.flip1.ExecutionFailureHandler.handleFailure(ExecutionFailureHandler.java:138)\n\tat org.apache.flink.runtime.executiongraph.failover.flip1.ExecutionFailureHandler.getFailureHandlingResult(ExecutionFailureHandler.java:82)\n\tat org.apache.flink.runtime.scheduler.DefaultScheduler.handleTaskFailure(DefaultScheduler.java:222)\n\tat org.apache.flink.runtime.scheduler.DefaultScheduler.maybeHandleTaskFailure(DefaultScheduler.java:212)\n\tat org.apache.flink.runtime.scheduler.DefaultScheduler.updateTaskExecutionStateInternal(DefaultScheduler.java:203)\n\tat org.apache.flink.runtime.scheduler.SchedulerBase.updateTaskExecutionState(SchedulerBase.java:718)\n\tat org.apache.flink.runtime.scheduler.SchedulerNG.updateTaskExecutionState(SchedulerNG.java:79)\n\tat org.apache.flink.runtime.jobmaster.JobMaster.updateTaskExecutionState(JobMaster.java:443)\n\tat jdk.internal.reflect.GeneratedMethodAccessor99.invoke(Unknown Source)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.apache.flink.runtime.rpc.akka.AkkaRpcActor.handleRpcInvocation(AkkaRpcActor.java:305)\n\tat org.apache.flink.runtime.rpc.akka.AkkaRpcActor.handleRpcMessage(AkkaRpcActor.java:212)\n\tat org.apache.flink.runtime.rpc.akka.FencedAkkaRpcActor.handleRpcMessage(FencedAkkaRpcActor.java:77)\n\tat org.apache.flink.runtime.rpc.akka.AkkaRpcActor.handleMessage(AkkaRpcActor.java:158)\n\tat akka.japi.pf.UnitCaseStatement.apply(CaseStatements.scala:26)\n\tat akka.japi.pf.UnitCaseStatement.apply(CaseStatements.scala:21)\n\tat scala.PartialFunction.applyOrElse(PartialFunction.scala:123)\n\tat scala.PartialFunction.applyOrElse$(PartialFunction.scala:122)\n\tat akka.japi.pf.UnitCaseStatement.applyOrElse(CaseStatements.scala:21)\n\tat scala.PartialFunction$OrElse.applyOrElse(PartialFunction.scala:171)\n\tat scala.PartialFunction$OrElse.applyOrElse(PartialFunction.scala:172)\n\tat scala.PartialFunction$OrElse.applyOrElse(PartialFunction.scala:172)\n\tat akka.actor.Actor.aroundReceive(Actor.scala:517)\n\tat akka.actor.Actor.aroundReceive$(Actor.scala:515)\n\tat akka.actor.AbstractActor.aroundReceive(AbstractActor.scala:225)\n\tat akka.actor.ActorCell.receiveMessage(ActorCell.scala:592)\n\tat akka.actor.ActorCell.invoke(ActorCell.scala:561)\n\tat akka.dispatch.Mailbox.processMailbox(Mailbox.scala:258)\n\tat akka.dispatch.Mailbox.run(Mailbox.scala:225)\n\tat akka.dispatch.Mailbox.exec(Mailbox.scala:235)\n\tat akka.dispatch.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)\n\tat akka.dispatch.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)\n\tat akka.dispatch.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)\n\tat akka.dispatch.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)\nCaused by: java.lang.RuntimeException: Retries exceeded for getRecords operation - all 3 retry attempts failed.\n\tat org.apache.flink.streaming.connectors.kinesis.proxy.KinesisProxy.getRecords(KinesisProxy.java:317)\n\tat org.apache.flink.streaming.connectors.kinesis.internals.publisher.polling.PollingRecordPublisher.getRecords(PollingRecordPublisher.java:168)\n\tat org.apache.flink.streaming.connectors.kinesis.internals.publisher.polling.PollingRecordPublisher.run(PollingRecordPublisher.java:113)\n\tat org.apache.flink.streaming.connectors.kinesis.internals.publisher.polling.PollingRecordPublisher.run(PollingRecordPublisher.java:102)\n\tat org.apache.flink.streaming.connectors.kinesis.internals.ShardConsumer.run(ShardConsumer.java:114)\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)\n\tat java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)\n\tat java.base/java.lang.Thread.run(Thread.java:829)\n</div>\n        </div>\n    </div>\n</div>\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%flink.ssql(type=update)\nSELECT data.country, SUM(data.sale_price) AS sales FROM `eCommStream` GROUP BY data.country;\n",
+      "user": "anonymous",
+      "dateUpdated": "2022-12-16T21:19:47+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "stackedAreaChart",
+              "height": 300,
+              "optionOpen": false
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "FLINK JOB",
+          "tooltip": "View in Flink web UI",
+          "group": "flink",
+          "values": [
+            {
+              "jobUrl": "/flinkdashboard/#/job/f8b2b27b8d47a1d434dab90824d0f168",
+              "$$hashKey": "object:58244"
+            }
+          ],
+          "interpreterSettingId": "flink"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1671224887392_937798245",
+      "id": "paragraph_1671224887392_937798245",
+      "dateCreated": "2022-12-16T21:08:07+0000",
+      "status": "RUNNING",
+      "focus": true,
+      "$$hashKey": "object:7905",
+      "dateFinished": "2022-12-16T21:12:53+0000",
+      "dateStarted": "2022-12-16T21:13:10+0000",
+      "results": {
+        "msg": [
+          {
+            "data": "country\tsales\nCanada\t245.89\nIndia\t61.22\nUK\t281.15002\nUSA\t511.76004\n",
+            "type": "TABLE"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%flink.ssql(type=update)\nSELECT data.currency, SUM(data.sale_price) AS sales FROM `eCommStream` GROUP BY data.currency;\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2022-12-16T21:17:17+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "multiBarChart",
+              "height": 300,
+              "optionOpen": false
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "FLINK JOB",
+          "tooltip": "View in Flink web UI",
+          "group": "flink",
+          "values": [
+            {
+              "jobUrl": "/flinkdashboard/#/job/34506c37bb312b2ff42870e483919ca1",
+              "$$hashKey": "object:52339"
+            }
+          ],
+          "interpreterSettingId": "flink"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1671225105937_2003746480",
+      "id": "paragraph_1671225105937_2003746480",
+      "dateCreated": "2022-12-16T21:11:45+0000",
+      "status": "RUNNING",
+      "focus": true,
+      "$$hashKey": "object:20952",
+      "dateFinished": "2022-12-16T21:16:16+0000",
+      "dateStarted": "2022-12-16T21:16:42+0000",
+      "results": {
+        "msg": [
+          {
+            "data": "currency\tsales\nCAD\t322.78998\nEUR\t368.76\nINR\t99.630005\nUSD\t308.84\n",
+            "type": "TABLE"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%flink.ssql(type=update)\nSELECT data.country, MAX(data.sale_price) AS sales FROM `eCommStream` GROUP BY data.country;\n",
+      "user": "anonymous",
+      "dateUpdated": "2022-12-16T21:22:19+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "lineChart",
+              "height": 300,
+              "optionOpen": false
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "FLINK JOB",
+          "tooltip": "View in Flink web UI",
+          "group": "flink",
+          "values": [
+            {
+              "jobUrl": "/flinkdashboard/#/job/0b463f8c2a8e24507638687d6bce3a34",
+              "$$hashKey": "object:63434"
+            }
+          ],
+          "interpreterSettingId": "flink"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1671225375277_57223233",
+      "id": "paragraph_1671225375277_57223233",
+      "dateCreated": "2022-12-16T21:16:15+0000",
+      "status": "RUNNING",
+      "focus": true,
+      "$$hashKey": "object:46803",
+      "dateFinished": "2022-12-16T21:21:19+0000",
+      "dateStarted": "2022-12-16T21:21:45+0000",
+      "results": {
+        "msg": [
+          {
+            "data": "country\tsales\nCanada\t90.56\nIndia\t44.45\nUK\t98.11\nUSA\t105.44\n",
+            "type": "TABLE"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%flink.ssql\n",
+      "user": "anonymous",
+      "dateUpdated": "2022-12-16T21:20:31+0000",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1671225631804_481451169",
+      "id": "paragraph_1671225631804_481451169",
+      "dateCreated": "2022-12-16T21:20:31+0000",
+      "status": "READY",
+      "focus": true,
+      "$$hashKey": "object:59419"
+    }
+  ],
+  "name": "eCommStream",
+  "id": "2HP8EB2G8",
+  "defaultInterpreterGroup": "flink",
+  "version": "0.9.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {},
+  "path": "/eCommStream"
+}
