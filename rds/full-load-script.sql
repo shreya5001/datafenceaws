@@ -1,17 +1,3 @@
-CREATE TABLE watermarktable
-(
-    table_name VARCHAR(255),
-    watermark_value DATETIME
-);
-INSERT INTO watermarktable VALUES 
-('dbo.products',STR_TO_DATE('1/1/2010 12:00:00','%d/%m/%Y %H:%i:%s')),('dbo.store_customers',STR_TO_DATE('1/1/2010 12:00:00','%d/%m/%Y %H:%i:%s')), ('dbo.store_orders',STR_TO_DATE('1/1/2010 12:00:00','%d/%m/%Y %H:%i:%s'));
--- select * from watermarktable;
-DROP PROCEDURE IF EXISTS usp_write_watermark;
-DELIMITER //
-CREATE PROCEDURE usp_write_watermark (IN LastModifiedtime datetime, IN TableName varchar(50))
-BEGIN
-  UPDATE watermarktable SET watermark_value = LastModifiedtime WHERE table_name = TableName;
-END //
 DELIMITER ;
 DROP TABLE IF EXISTS products;
 CREATE TABLE products (
