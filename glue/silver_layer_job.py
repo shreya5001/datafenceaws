@@ -29,19 +29,6 @@ spark = SparkSession \
 job = Job(glueContext)
 # Send arguments to the job
 
-sys.argv+=["--S3_BUCKET", "aws-analytics-course"]
-sys.argv+=["--BRONZE_LAYER_NAMESPACE", "bronze/dms/sales"]
-sys.argv+=["--BRONZE_LAYER_ECOMMERCE_NAMESPACE", "bronze/kinesis"]
-sys.argv+=["--SILVER_LAYER_NAMESPACE", "silver"]
-sys.argv+=["--JOB_DATE", "2023/01/12/18"]
-sys.argv+=["--TABLES", "{\"store_orders\": \"currency\", \"store_customers\": \"country\", \"products\": \"product_category\"}"]
-sys.argv+=["--JOIN_COLUMNS_DELTA", "{\"store_orders\": \"order_number\", \"store_customers\": \"email\",  \"products\": \"product_id\"}"]
-sys.argv+=["--JOIN_COLUMNS_INCREMENTAL", "{\"store_orders\": \"order_number\", \"store_customers\": \"email\", \"products\": \"product_category\"}"]
-sys.argv+=["--CURRENCY_CONVERSION_URL", "https://api.exchangerate-api.com/v4/latest/usd"]
-sys.argv+=["--ECOMMERCE_LOGS_BUCKET", "aws-analytics-incoming"]
-sys.argv+=["--ECOMMERCE_STREAM_DATE", "2023/01/31/17"]
-sys.argv+=["--GLUE_SILVER_DATABASE", "electroniz_curated"]
-
 args = getResolvedOptions(sys.argv,["S3_BUCKET", "BRONZE_LAYER_NAMESPACE", "BRONZE_LAYER_ECOMMERCE_NAMESPACE", "SILVER_LAYER_NAMESPACE", "JOB_DATE", "TABLES", "JOIN_COLUMNS_DELTA", "JOIN_COLUMNS_INCREMENTAL", "CURRENCY_CONVERSION_URL", "ECOMMERCE_LOGS_BUCKET", "ECOMMERCE_STREAM_DATE", "GLUE_SILVER_DATABASE"])
 # Get data from currency conversion API
 
