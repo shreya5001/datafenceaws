@@ -73,8 +73,8 @@ def get_dataframe(BRONZE_TABLE_PATH):
 
         df_read_data_incremental=curate_columns(df_read_data_incremental, 'S')
         df_read_data_incremental = df_read_data_incremental.drop('Op')
-        df_read_data_incremental.printSchema()
-        df_read_data_incremental.show(10)
+        #df_read_data_incremental.printSchema()
+        #df_read_data_incremental.show(10)
         return df_read_data_incremental
     except:
         return 0
@@ -89,7 +89,7 @@ def merge_to_delta(SILVER_TABLE_PATH, BRONZE_TABLE_PATH, JOB_DATE, JOIN_COLUMN_D
     if df_read_data_incremental != 0:
         deltaTable = DeltaTable.forPath(spark, SILVER_TABLE_PATH)
         if deltaTable:
-            print("Delta table exists")
+            #print("Delta table exists")
             deltaTable.alias(DELTA_TABLE_ALIAS).merge(
                     source=df_read_data_incremental.alias(INCREMENTAL_TABLE_ALIAS),
                     condition=fn.expr(JOIN_CONDITION)) \
@@ -102,10 +102,10 @@ def merge_data_to_delta(BRONZE_TABLE_PATH, SILVER_TABLE_PATH, JOB_DATE, TABLE, P
     try:   
         deltaTable = DeltaTable.forPath(spark, SILVER_TABLE_PATH)
         if deltaTable:
-            print("Delta table exists")
+            #print("Delta table exists")
             merge_to_delta(SILVER_TABLE_PATH, BRONZE_TABLE_PATH, JOB_DATE, JOIN_COLUMN_DELTA, JOIN_COLUMN_INCREMENTAL)
     except:
-        print("Delta table does not exist")
+        #print("Delta table does not exist")
         df_read_data_full = get_dataframe(BRONZE_TABLE_PATH + "/" + "LOAD00000001.csv")
         df_read_data_full.write.format("delta").save(SILVER_TABLE_PATH)
         merge_to_delta(SILVER_TABLE_PATH, BRONZE_TABLE_PATH, JOB_DATE, JOIN_COLUMN_DELTA, JOIN_COLUMN_INCREMENTAL)
@@ -238,7 +238,7 @@ ECOMM_LOGS_SILVER_TABLE_PATH="s3a://" + args['S3_BUCKET'] + "/" + args['SILVER_L
 
 try:   
     deltaTable = DeltaTable.forPath(spark, ECOMM_LOGS_SILVER_TABLE_PATH)
-    df_ecommerce_country.printSchema()
+    #df_ecommerce_country.printSchema()
     if deltaTable:
         deltaTable.alias("logs").merge(
              df_ecommerce_country.alias("logs_incr"),
@@ -247,7 +247,7 @@ try:
             .execute()
         
 except:
-    print("Delta table does not exist")
+    #print("Delta table does not exist")
     df_ecommerce_country.write.format("delta").save(ECOMM_LOGS_SILVER_TABLE_PATH)
     deltaTable = DeltaTable.forPath(spark, ECOMM_LOGS_SILVER_TABLE_PATH)
     deltaTable.generate("symlink_format_manifest")
@@ -275,13 +275,13 @@ df_ecommerce_transactions=df_ecommerce_transactions.drop('id', 'eventtype', 'sub
 
 df_ecommerce_transactions=curate_columns(df_ecommerce_transactions, 'E')
 df_ecommerce_transactions=df_ecommerce_transactions.withColumn("order_number",col("order_number").cast(IntegerType())).withColumn("sale_price",col("sale_price").cast(FloatType()))
-df_ecommerce_transactions.show(3)
-df_ecommerce_transactions.printSchema()
+#df_ecommerce_transactions.show(3)
+#df_ecommerce_transactions.printSchema()
 
 try:   
     deltaTable = DeltaTable.forPath(spark, SILVER_ECOMMERCE_TABLE_PATH)
     if deltaTable:
-        print("Delta table exists")
+        #print("Delta table exists")
         DELTA_TABLE_ALIAS="ecomm_delta_table"
         INCREMENTAL_TABLE_ALIAS="ecomm_delta_table_incremental"
         JOIN_CONDITION=DELTA_TABLE_ALIAS + "." + "email" + "=" + INCREMENTAL_TABLE_ALIAS + "." + "email"
