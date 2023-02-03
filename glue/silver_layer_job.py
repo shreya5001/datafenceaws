@@ -251,50 +251,54 @@ except:
     df_ecommerce_country.write.format("delta").save(ECOMM_LOGS_SILVER_TABLE_PATH)
     deltaTable = DeltaTable.forPath(spark, ECOMM_LOGS_SILVER_TABLE_PATH)
     deltaTable.generate("symlink_format_manifest")
+    
 # Function to read ecommerce transactions from bronze layer and merge data to delta table
 
 BRONZE_ECOMMERCE_TABLE_PATH="s3a://" + args['S3_BUCKET'] + "/" + args['BRONZE_LAYER_ECOMMERCE_NAMESPACE'] + "/" + args['ECOMMERCE_STREAM_DATE']
 SILVER_ECOMMERCE_TABLE_PATH="s3a://" + args['S3_BUCKET'] + "/" + args['SILVER_LAYER_NAMESPACE'] + "/" + "ecommerce_orders"
 
-df_ecommerce_transactions = spark.read.parquet(BRONZE_ECOMMERCE_TABLE_PATH)
-df_ecommerce_transactions=flatten_df(df_ecommerce_transactions)
-df_ecommerce_transactions=df_ecommerce_transactions.drop('id', 'eventtype', 'subject', 'eventtime', 'dataversion') \
-                                                   .withColumnRenamed('data_customer_name', 'customer_name') \
-                                                   .withColumnRenamed('data_address', 'address') \
-                                                   .withColumnRenamed('data_city', 'city') \
-                                                   .withColumnRenamed('data_postalcode', 'postalcode') \
-                                                   .withColumnRenamed('data_country', 'country') \
-                                                   .withColumnRenamed('data_phone', 'phone') \
-                                                   .withColumnRenamed('data_email', 'email') \
-                                                   .withColumnRenamed('data_product_name', 'product_name') \
-                                                   .withColumnRenamed('data_order_date', 'order_date') \
-                                                   .withColumnRenamed('data_currency', 'currency') \
-                                                   .withColumnRenamed('data_order_mode', 'order_mode') \
-                                                   .withColumnRenamed('data_sale_price', 'sale_price') \
-                                                   .withColumnRenamed('data_order_number', 'order_number') 
+try:
+    df_ecommerce_transactions = spark.read.parquet(BRONZE_ECOMMERCE_TABLE_PATH)
+    df_ecommerce_transactions=flatten_df(df_ecommerce_transactions)
+    df_ecommerce_transactions=df_ecommerce_transactions.drop('id', 'eventtype', 'subject', 'eventtime', 'dataversion') \
+                                                       .withColumnRenamed('data_customer_name', 'customer_name') \
+                                                       .withColumnRenamed('data_address', 'address') \
+                                                       .withColumnRenamed('data_city', 'city') \
+                                                       .withColumnRenamed('data_postalcode', 'postalcode') \
+                                                       .withColumnRenamed('data_country', 'country') \
+                                                       .withColumnRenamed('data_phone', 'phone') \
+                                                       .withColumnRenamed('data_email', 'email') \
+                                                       .withColumnRenamed('data_product_name', 'product_name') \
+                                                       .withColumnRenamed('data_order_date', 'order_date') \
+                                                       .withColumnRenamed('data_currency', 'currency') \
+                                                       .withColumnRenamed('data_order_mode', 'order_mode') \
+                                                       .withColumnRenamed('data_sale_price', 'sale_price') \
+                                                       .withColumnRenamed('data_order_number', 'order_number') 
 
-df_ecommerce_transactions=curate_columns(df_ecommerce_transactions, 'E')
-df_ecommerce_transactions=df_ecommerce_transactions.withColumn("order_number",col("order_number").cast(IntegerType())).withColumn("sale_price",col("sale_price").cast(FloatType()))
-#df_ecommerce_transactions.show(3)
-#df_ecommerce_transactions.printSchema()
+    df_ecommerce_transactions=curate_columns(df_ecommerce_transactions, 'E')
+    df_ecommerce_transactions=df_ecommerce_transactions.withColumn("order_number",col("order_number").cast(IntegerType())).withColumn("sale_price",col("sale_price").cast(FloatType()))
+    df_ecommerce_transactions.show(3)
+    df_ecommerce_transactions.printSchema()
 
-try:   
-    deltaTable = DeltaTable.forPath(spark, SILVER_ECOMMERCE_TABLE_PATH)
-    if deltaTable:
-        #print("Delta table exists")
-        DELTA_TABLE_ALIAS="ecomm_delta_table"
-        INCREMENTAL_TABLE_ALIAS="ecomm_delta_table_incremental"
-        JOIN_CONDITION=DELTA_TABLE_ALIAS + "." + "email" + "=" + INCREMENTAL_TABLE_ALIAS + "." + "email"
-        deltaTable.alias(DELTA_TABLE_ALIAS).merge(
-                    source=df_ecommerce_transactions.alias(INCREMENTAL_TABLE_ALIAS),
-                    condition=fn.expr(JOIN_CONDITION)) \
-                    .whenMatchedUpdateAll()            \
-                    .whenNotMatchedInsertAll()         \
-                    .execute()
+    try:   
+        deltaTable = DeltaTable.forPath(spark, SILVER_ECOMMERCE_TABLE_PATH)
+        if deltaTable:
+            print("Delta table exists")
+            DELTA_TABLE_ALIAS="ecomm_delta_table"
+            INCREMENTAL_TABLE_ALIAS="ecomm_delta_table_incremental"
+            JOIN_CONDITION=DELTA_TABLE_ALIAS + "." + "email" + "=" + INCREMENTAL_TABLE_ALIAS + "." + "email"
+            deltaTable.alias(DELTA_TABLE_ALIAS).merge(
+                        source=df_ecommerce_transactions.alias(INCREMENTAL_TABLE_ALIAS),
+                        condition=fn.expr(JOIN_CONDITION)) \
+                        .whenMatchedUpdateAll()            \
+                        .whenNotMatchedInsertAll()         \
+                        .execute()
+    except:
+        df_ecommerce_transactions.write.format("delta").save(SILVER_ECOMMERCE_TABLE_PATH)
+        deltaTable = DeltaTable.forPath(spark, SILVER_ECOMMERCE_TABLE_PATH)
+        deltaTable.generate("symlink_format_manifest")
 except:
-    df_ecommerce_transactions.write.format("delta").save(SILVER_ECOMMERCE_TABLE_PATH)
-    deltaTable = DeltaTable.forPath(spark, SILVER_ECOMMERCE_TABLE_PATH)
-    deltaTable.generate("symlink_format_manifest")
+    print("No data found for that period")
 # Create a curation schema in glue catalog
 
 spark.sql("CREATE DATABASE IF NOT EXISTS " + args['GLUE_SILVER_DATABASE'])
