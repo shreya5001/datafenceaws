@@ -1,0 +1,6 @@
+{
+  "entries": [
+    {"url":"s3://aws-analytics-course/raw/redshift/data/1500000SalesRecords.csv.gz", "mandatory":true},
+    {"url":"s3://aws-analytics-course/raw/redshift/data/100SalesRecords.csv.gz", "mandatory":true}
+  ]
+}
