@@ -2,11 +2,7 @@ import sys
 from pyspark import SparkContext, SparkConf
 from operator import add
 
-conf = (SparkConf()
-         .setMaster("local")
-         .setAppName("WordCounter")
-         .set("spark.executor.memory", "1g"))
-sc = SparkContext(conf = conf)
+sc = SparkContext.getOrCreate()
 
 if __name__ == "__main__":
     try:
