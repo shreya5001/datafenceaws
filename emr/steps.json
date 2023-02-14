@@ -1,0 +1,13 @@
+[
+ {
+   "Name": "Spark application",
+   "Type":"CUSTOM_JAR",
+   "Jar":"command-runner.jar",
+   "Args":
+   [
+     "spark-submit",
+     "--deploy-mode", "cluster",
+     "s3://aws-analytics-course/temp/wordcount.py"
+   ]
+ }
+]
