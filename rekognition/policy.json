@@ -1,0 +1,41 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "rekognition:DetectLabels",
+                "rekognition:StartContentModeration",
+                "rekognition:GetCelebrityRecognition",
+                "rekognition:StartTextDetection",
+                "rekognition:GetPersonTracking",
+                "rekognition:DetectFaces",
+                "rekognition:DetectModerationLabels",
+                "rekognition:GetFaceDetection",
+                "rekognition:StartLabelDetection",
+                "rekognition:RecognizeCelebrities",
+                "rekognition:CompareFaces",
+                "rekognition:DetectText",
+                "rekognition:GetCelebrityInfo",
+                "rekognition:StartCelebrityRecognition",
+                "rekognition:GetLabelDetection",
+                "rekognition:StartSegmentDetection",
+                "rekognition:GetTextDetection",
+                "rekognition:StartFaceDetection",
+                "rekognition:GetContentModeration",
+                "rekognition:GetFaceSearch",
+                "rekognition:DescribeProjects",
+                "rekognition:GetSegmentDetection",
+                "rekognition:StartPersonTracking"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": "rekognition:*",
+            "Resource": "arn:aws:rekognition:*:*:collection/*"
+        }
+    ]
+}
