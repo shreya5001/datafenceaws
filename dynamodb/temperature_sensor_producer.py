@@ -6,7 +6,7 @@ import random
 import time
 from decimal import Decimal
 
-dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
+dynamodb = boto3.resource('dynamodb', region_name='ap-northeast-1')
 
 def put_to_table(sensor_id, temp, sensor_timestamp):
     payload = {
