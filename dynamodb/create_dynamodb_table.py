@@ -1,6 +1,6 @@
 import boto3
 
-dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
+dynamodb = boto3.resource('dynamodb', region_name='ap-northeast-1')
 
 mytable = dynamodb.create_table(
 TableName= 'Temperature',
