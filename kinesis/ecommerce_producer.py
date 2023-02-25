@@ -9,7 +9,7 @@ import sys
 
 stream_name = 'eCommStream'
 ecomm_file=sys.argv[1]
-kinesis_client = boto3.client('kinesis', region_name='us-east-1')
+kinesis_client = boto3.client('kinesis', region_name='ap-northeast-1')
 
 file1=open(ecomm_file, 'r')
 Lines = file1.readlines()
