@@ -11,7 +11,7 @@ import aws_kinesis_agg.aggregator
 
 stream_name = 'eCommStream'
 ecomm_file=sys.argv[1]
-kinesis_client = boto3.client('kinesis', region_name='us-east-1')
+kinesis_client = boto3.client('kinesis', region_name='ap-northeast-1')
 
 def send_aggregate_record(agg_record):
     pk, _, data = agg_record.get_contents()
