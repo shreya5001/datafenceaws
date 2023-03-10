@@ -7,7 +7,7 @@ import time
 import json
 import sys
 import uuid
-pip install aws-kinesis-agg
+
 import aws_kinesis_agg.aggregator
 
 stream_name = 'eCommStream'
